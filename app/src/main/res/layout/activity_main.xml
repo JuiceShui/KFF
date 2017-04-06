@@ -31,6 +31,7 @@
     </RelativeLayout>
 
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/topLayout">
@@ -96,4 +97,51 @@
 
         </LinearLayout>
     </ScrollView>
+   <LinearLayout
+       android:layout_alignParentBottom="true"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <TextView
+           android:gravity="center_horizontal|center_vertical"
+           android:layout_width="0dp"
+           android:id="@+id/tv_help"
+           android:layout_height="wrap_content"
+           android:text="Help"
+           android:layout_weight="1"/>
+       <TextView
+           android:gravity="center_horizontal|center_vertical"
+           android:layout_width="0dp"
+           android:id="@+id/tv_feedBack"
+           android:layout_height="wrap_content"
+           android:text="feedBack"
+           android:layout_weight="1"/>
+       <TextView
+           android:gravity="center_horizontal|center_vertical"
+           android:layout_width="0dp"
+           android:id="@+id/tv_seek"
+           android:layout_height="wrap_content"
+           android:text="Seek"
+           android:layout_weight="1"/>
+       <TextView
+           android:gravity="center_horizontal|center_vertical"
+           android:layout_width="0dp"
+           android:id="@+id/tv_im"
+           android:layout_height="wrap_content"
+           android:text="IM"
+           android:layout_weight="1"/>
+       <TextView
+           android:gravity="center_horizontal|center_vertical"
+           android:layout_width="0dp"
+           android:id="@+id/tv_lag"
+           android:layout_height="wrap_content"
+           android:text="Lag"
+           android:layout_weight="1"/>
+       <TextView
+           android:gravity="center_horizontal|center_vertical"
+           android:layout_width="0dp"
+           android:id="@+id/tv_us"
+           android:layout_height="wrap_content"
+           android:text="Us"
+           android:layout_weight="1"/>
+   </LinearLayout>
 </RelativeLayout>

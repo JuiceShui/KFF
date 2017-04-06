@@ -1,17 +1,21 @@
 package com.kf.juice.kff;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kf.juice.kff.App.App;
 import com.kf.juice.kff.utils.Preference;
 import com.kf.juice.kff.utils.Utils;
+import com.kf5.sdk.helpcenter.ui.HelpCenterActivity;
+import com.kf5.sdk.im.ui.KF5ChatActivity;
 import com.kf5.sdk.system.entity.Field;
 import com.kf5.sdk.system.entity.KF5User;
 import com.kf5.sdk.system.entity.ParamsKey;
@@ -20,6 +24,8 @@ import com.kf5.sdk.system.internet.HttpRequestCallBack;
 import com.kf5.sdk.system.utils.SPUtils;
 import com.kf5.sdk.system.utils.SafeJson;
 import com.kf5.sdk.system.widget.DialogBox;
+import com.kf5.sdk.ticket.ui.FeedBackActivity;
+import com.kf5.sdk.ticket.ui.LookFeedBackActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,19 +45,33 @@ public class MainActivity extends AppCompatActivity {
     EditText etEmail;
     @BindView(R.id.btn_login)
     Button btn_login;
+    @BindView(R.id.tv_help)
+    TextView tvHelp;
+    @BindView(R.id.tv_feedBack)
+    TextView tvFeedBack;
+    @BindView(R.id.tv_seek)
+    TextView tvSeek;
+    @BindView(R.id.tv_im)
+    TextView tvIm;
+    @BindView(R.id.tv_lag)
+    TextView tvLag;
+    @BindView(R.id.tv_us)
+    TextView tvUs;
     private KF5User kf5User;
+    private Intent mIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        kf5User= App.getKf5User();
+        kf5User = App.getKf5User();
         etEmail.setText("123456@qq.com");
         etName.setText("chosen.kf5.com");
+        mIntent=new Intent();
     }
+
     @OnClick(R.id.btn_login)
-    void login()
-    {
+    void login() {
         final Map<String, String> map = new ArrayMap<>();
         map.put(ParamsKey.EMAIL, etEmail.getText().toString());
 //                map.put(Field.PHONE, "18715965784");
@@ -112,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void saveToken(Map<String, String> map) {
         map.put(ParamsKey.DEVICE_TOKEN, "123456");
         UserInfoAPI.getInstance().saveDeviceToken(map, new HttpRequestCallBack() {
@@ -138,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void loginUser(final Map<String, String> map) {
 
         UserInfoAPI.getInstance().loginUser(map, new HttpRequestCallBack() {
@@ -198,4 +220,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * 帮助
+     */
+    @OnClick(R.id.tv_help)
+    void onClickHelp()
+    {
+        startActivity(new Intent(MainActivity.this, HelpCenterActivity.class));
+    }
+    @OnClick(R.id.tv_feedBack)
+    void onClickFeedBack()
+    {
+        startActivity(new Intent(MainActivity.this, FeedBackActivity.class));
+    }
+    @OnClick(R.id.tv_im)
+    void onClickIM()
+    {
+        startActivity(new Intent(MainActivity.this, KF5ChatActivity.class));
+    }
+    @OnClick(R.id.tv_seek)
+    void onClickSeek()
+    {
+        startActivity(new Intent(MainActivity.this, LookFeedBackActivity.class));
+    }
+    @OnClick(R.id.tv_help)
+    void onClickAbout()
+    {
+        startActivity(new Intent(MainActivity.this, FeedBackActivity.class));
+    }
+
 }
